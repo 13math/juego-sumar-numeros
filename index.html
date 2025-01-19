@@ -1,0 +1,79 @@
+<!-- Juego 1: Suma y encuentra el resultado -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suma y Encuentra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        .game-container {
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #008cba;
+            border-radius: 10px;
+            max-width: 400px;
+            background-color: #fff;
+        }
+        button {
+            background-color: #008cba;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005f73;
+        }
+        .result {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Suma y Encuentra</h1>
+    <p>Resuelve las sumas y verifica si tu respuesta es correcta. ¡Es hora de practicar!</p>
+    <div class="game-container">
+        <p id="problem"></p>
+        <input type="number" id="answer" placeholder="Escribe tu respuesta">
+        <button onclick="checkAnswer()">Comprobar</button>
+        <p class="result" id="result"></p>
+    </div>
+
+    <script>
+        let num1 = Math.floor(Math.random() * 20) + 1;
+        let num2 = Math.floor(Math.random() * 20) + 1;
+        const problemElement = document.getElementById('problem');
+        const resultElement = document.getElementById('result');
+        problemElement.textContent = `¿Cuánto es ${num1} + ${num2}?`;
+
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById('answer').value);
+            const correctAnswer = num1 + num2;
+
+            if (userAnswer === correctAnswer) {
+                resultElement.textContent = '¡Correcto! 🎉';
+                resultElement.style.color = 'green';
+                resetGame();
+            } else {
+                resultElement.textContent = 'Intenta de nuevo. ❌';
+                resultElement.style.color = 'red';
+            }
+        }
+
+        function resetGame() {
+            num1 = Math.floor(Math.random() * 20) + 1;
+            num2 = Math.floor(Math.random() * 20) + 1;
+            problemElement.textContent = `¿Cuánto es ${num1} + ${num2}?`;
+            document.getElementById('answer').value = '';
+        }
+    </script>
+</body>
+</html>
